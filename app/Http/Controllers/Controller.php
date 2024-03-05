@@ -15,15 +15,17 @@ class Controller extends BaseController
 
     public function adminPosts()
     {
-        $posts = Posts::all();
+        $posts = Posts::paginate(5);
         return view('admin.posts', compact('posts'));
     }
 
     public function welcome()
 {
-    $posts = Posts::all();
+    $posts = Posts::paginate(5);
     $users = User::all();
     return view('welcome', compact('posts', 'users'));
+
+
 }
 
 }

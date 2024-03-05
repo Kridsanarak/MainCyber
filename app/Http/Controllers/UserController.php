@@ -98,7 +98,7 @@ class UserController extends Controller
     
         $user->update($updateData);
     
-        return redirect()->back()->with('status','User Update');
+        return redirect('admin/users')->with('status','User Updated Successfully');
     }
     
     

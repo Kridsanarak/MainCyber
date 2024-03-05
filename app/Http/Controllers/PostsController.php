@@ -61,7 +61,7 @@ class PostsController extends Controller
             'users_name' => auth()->user()->name,
         ]);
 
-        return redirect('posts/create')->with('status','Posts Created Successfully');  
+        return redirect('home')->with('status','Posts Created Successfully');  
     }
 
     public function edit(int $id)
@@ -115,6 +115,7 @@ class PostsController extends Controller
         }
     
         $posts->update($updateData);
+        
         
         return redirect()->back()->with('status','Post Update');
     }

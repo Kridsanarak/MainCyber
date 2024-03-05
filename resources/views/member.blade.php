@@ -16,6 +16,7 @@
                                 <th>อีเมล</th>
                         </thead>
                         <tbody>
+                            @csrf
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{$user->id}}</td>

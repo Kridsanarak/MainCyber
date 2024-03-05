@@ -3,6 +3,7 @@
 @section('content')
 <div class="container mt-3">
     <table class="table table-bordered table-striped">
+        @csrf
         @foreach ($posts as $item)
         <div class="col">
             <div class="card mb-4">
