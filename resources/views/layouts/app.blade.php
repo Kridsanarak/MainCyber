@@ -45,7 +45,7 @@
                             window.location.href = "{{ url('/posts/create') }}";
                         } else {
                             // หากยังไม่ได้เข้าสู่ระบบให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
-                            window.location.href = "{{ url('/login') }}?redirect={{ url('/posts/create') }}";
+                            window.location.href = "{{ url('/login') }}";
                         }
                     });
                 </script>
