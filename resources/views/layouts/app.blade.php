@@ -30,6 +30,25 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <a href="{{ url('/login') }}"><button type="button" class="btn btn-primary" data-bs-target="#exampleModal" id="createPostButton">+ เพิ่มกระทู้</button></a>
+
+                <script>
+                    document.getElementById("createPostButton").addEventListener("click", function(event) {
+                        event.preventDefault(); // หยุดการทำงานของลิงก์
+
+                        // ถ้าผู้ใช้เข้าสู่ระบบแล้วให้เปลี่ยนเส้นทางไปยังหน้าสร้างโพสต์
+                        if ({
+                                {
+                                    Auth::check()
+                                }
+                            }) {
+                            window.location.href = "{{ url('/posts/create') }}";
+                        } else {
+                            // หากยังไม่ได้เข้าสู่ระบบให้เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+                            window.location.href = "{{ url('/login') }}?redirect={{ url('/posts/create') }}";
+                        }
+                    });
+                </script>
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
