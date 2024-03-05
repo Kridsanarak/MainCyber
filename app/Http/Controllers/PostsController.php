@@ -17,6 +17,13 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));   
     }
 
+    public function postsData($id)
+    {
+        $posts = Posts::find($id);
+        return view('posts.data', compact('posts'));
+    }
+
+
     // Create Post
     public function create()
     {

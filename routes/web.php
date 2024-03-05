@@ -53,6 +53,7 @@ Route::get('/editprofile', [App\Http\Controllers\HomeController::class, 'editPro
 Route::post('/update-name', [App\Http\Controllers\UserController::class, 'updateName'])->name('update-name');
 Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update-password');
 
+Route::post('posts/data/{id}', [App\Http\Controllers\PostsController::class, 'postsData'])->name('posts.data');
 Route::post('posts/{posts}/comment', [App\Http\Controllers\PostsController::class, 'comment'])->name('post.comment');
 Route::post('comments/{post}', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment');
 Route::get('comment/{comment}/edit', [App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
@@ -63,6 +64,7 @@ Route::delete('comment/{comment}', [App\Http\Controllers\CommentController::clas
 
 Route::controller(App\Http\Controllers\PostsController::class)->group(function () {
     Route::get('posts', 'index');
+    Route::get('posts/data/{id}', 'postsData');
     Route::get('posts/create', 'create');
     Route::post('posts/create', 'store');
     Route::get('posts/{id}/edit', 'edit');
