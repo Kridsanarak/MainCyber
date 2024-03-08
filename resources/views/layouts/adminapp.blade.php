@@ -40,8 +40,8 @@
                 <div class="bd-example">
                     <a href="{{ url('/posts/create')}}"><button type="button" class="btn btn-primary">+
                             เพิ่มกระทู้</button></a>
-                    <a href="{{ url('/admin/users')}}"><button type="button" class="btn btn-warning">Users</button></a>
-                    <a href="{{ url('/admin/posts')}}"><button type="button" class="btn btn-success">Posts</button></a>
+                    <a href="{{ url('/admin/users')}}"><button type="button" class="btn btn-success">Users</button></a>
+                    <a href="{{ url('/admin/posts')}}"><button type="button" class="btn btn-warning">Posts</button></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

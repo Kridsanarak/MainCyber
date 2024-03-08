@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $posts = Posts::paginate(5);
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(5);
         return view('home', compact('posts'));
     }
 
@@ -42,10 +42,17 @@ class HomeController extends Controller
         return view('admin.posts', compact('posts')); // ส่งข้อมูลไปยัง view 'admin.posts.index'
     }
 
-    
+    public function adminUsers()
+    {
+        $users = User::all();
+        $users = User::paginate(5);
+        return view('admin.users', compact('users'));
+    }
+
     public function adminHome()
     {
-        return view('adminHome');
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(5);
+        return view('adminHome', compact('posts'));
     }
     public function editProfile()
     {

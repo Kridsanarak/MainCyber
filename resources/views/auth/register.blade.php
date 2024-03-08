@@ -14,6 +14,12 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 

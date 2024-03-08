@@ -31,6 +31,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a href="{{ url('/login') }}"><button type="button" class="btn btn-primary" data-bs-target="#exampleModal" id="createPostButton">+ เพิ่มกระทู้</button></a>
+                &nbsp <a href="{{ route('member') }}"><button type="button" class="btn btn-success" >สมาชิกทั้งหมด</button></a>
 
                 <script>
                     document.getElementById("createPostButton").addEventListener("click", function(event) {

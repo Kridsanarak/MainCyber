@@ -2,6 +2,7 @@
 @section('content')
 <main class="container mt-3">
     <div>
+    <a href="{{ route('welcome') }}" class="btn btn-primary float-end">Back</a>
         <h3>กระทู้</h3>
         <table class="table table-bordered table-striped">
             @foreach ($posts as $item)

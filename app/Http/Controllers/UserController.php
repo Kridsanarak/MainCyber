@@ -25,11 +25,7 @@ class UserController extends Controller
         return view('users.show', compact('users'));
     }
 
-    public function adminUsers()
-    {
-        $users = User::all();
-        return view('admin.users', compact('users'));
-    }
+    
     public function updateName(Request $request)
     {
         // รับข้อมูลจากแบบฟอร์ม

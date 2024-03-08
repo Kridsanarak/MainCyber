@@ -23,6 +23,13 @@ class PostsController extends Controller
         return view('posts.data', compact('posts'));
     }
 
+    // PostController.php
+    public function userpost()
+    {
+        $posts = auth()->user()->posts;
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(100);
+        return view('posts.userpost', compact('posts'));
+    }
 
     // Create Post
     public function create()
@@ -61,7 +68,7 @@ class PostsController extends Controller
             'users_name' => auth()->user()->name,
         ]);
 
-        return redirect('home')->with('status','Posts Created Successfully');  
+        return redirect()->route('home')->with('status','Posts Created Successfully');
     }
 
     public function edit(int $id)
@@ -117,7 +124,7 @@ class PostsController extends Controller
         $posts->update($updateData);
         
         
-        return redirect()->back()->with('status','Post Update');
+        return redirect()->route('posts.data', ['id' => $posts->id])->with('status','Post Updated');
     }
 
     public function destroy(int $id)
@@ -133,7 +140,7 @@ class PostsController extends Controller
         // Delete post
         $posts->delete();
 
-        return redirect()->back()->with('status','Posts Deleted');
+        return redirect()->route('home')->with('status', 'Post Deleted');
     }
 
     public function comment(Posts $post)

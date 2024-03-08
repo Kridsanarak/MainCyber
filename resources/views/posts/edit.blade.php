@@ -12,12 +12,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>แก้ไขกระทู้
-                        @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.posts') }}" class="btn btn-primary float-end">Back to Admin</a>
-
-                        @else
-                        <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
-                        @endif
+                    <a href="javascript:history.back()" class="btn btn-primary float-end">Back</a>
                     </h4>
                 </div>
                 <div class="card-body">

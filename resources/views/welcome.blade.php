@@ -7,7 +7,7 @@
     <div class="card-body">
         <h3>กระทู้</h3>
         @csrf
-        @foreach ($posts as $item)
+        @foreach ($posts->sortByDesc('created_at') as $item)
         <div class="card mb-4">
             <div class="card-body">
                 <a href="{{ url('/posts/data', ['id' => $item->id]) }}" style="color: #007bff; text-decoration: none;"
@@ -24,6 +24,9 @@
             </div>
         </div>
         @endforeach
+        <div class="pagination justify-content-end">
+            {{ $posts->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 
 </main>

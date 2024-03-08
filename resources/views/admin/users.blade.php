@@ -25,7 +25,7 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->password}}</td>
                                 <td>
-                                    <a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-success mx-2">Edit</a>
+                                    <a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-warning mx-2">Edit</a>
                                     <a
                                         href="{{ url('user/'.$user->id.'/delete') }}"
                                         class="btn btn-danger mx-1"
@@ -38,6 +38,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="pagination justify-content-end">
+                        {{ $users->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>

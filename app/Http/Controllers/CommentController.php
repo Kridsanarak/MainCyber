@@ -75,8 +75,7 @@ class CommentController extends Controller
     
         $comment->save();
     
-        return redirect()->route('comment.edit', ['comment' => $comment->id])->with('status', 'Comment updated successfully');
-
+        return redirect()->route('posts.data', ['id' => $comment->posts_id])->with('status', 'Comment updated successfully');
     }
     
 

@@ -15,17 +15,25 @@ class Controller extends BaseController
 
     public function adminPosts()
     {
-        $posts = Posts::paginate(5);
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.posts', compact('posts'));
     }
 
+    public function adminUsers()
+    {
+        $users = User::all();
+        $users = User::paginate(5);
+        return view('admin.users', compact('users'));
+        
+    }
+
     public function welcome()
-{
-    $posts = Posts::paginate(5);
-    $users = User::all();
-    return view('welcome', compact('posts', 'users'));
+    {
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(5);
+        $users = User::all();
+        return view('welcome', compact('posts', 'users'));
 
 
-}
+    }
 
 }

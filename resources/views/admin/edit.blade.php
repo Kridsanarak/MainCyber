@@ -31,7 +31,7 @@
                         </div>
                         <div class="mb-3">
                             <label>รหัสผ่าน :</label>
-                            <textarea name="password" class="form-control" rows="3">{{ $user->password }}</textarea>
+                            <textarea name="password" class="form-control" rows="3">{{ $user->password = bcrypt('password') }}</textarea>
                             @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">

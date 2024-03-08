@@ -40,26 +40,36 @@ Route::get('/admin/users', function () {
     return view('admin.users', compact('users'));
 });
 
+Route::get('/member', function () {
+    $users = \App\Models\User::all();
+    return view('member', compact('users'));
+});
+
 
 Auth::routes();
 
-Route::get('/member', [App\Http\Controllers\HomeController::class, 'showUser'])->name('member');;
+Route::get('/', [App\Http\Controllers\Controller::class, 'welcome'])->name('welcome');
+Route::get('/member', [App\Http\Controllers\MemberController::class, 'index'])->name('member');;
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home',[App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('isAdmin');
+
+Route::get('/admin/users',[App\Http\Controllers\Controller::class, 'adminUsers'])->name('admin.users')->middleware('isAdmin');
 Route::get('/admin/posts', [App\Http\Controllers\Controller::class, 'adminPosts'])->name('admin.posts')->middleware('isAdmin');
 
 Route::get('/editprofile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('editprofile');
+Route::get('/userpost', [App\Http\Controllers\PostsController::class, 'userpost'])->name('userpost');
+
 
 Route::post('/update-name', [App\Http\Controllers\UserController::class, 'updateName'])->name('update-name');
 Route::post('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('update-password');
 
 Route::post('posts/data/{id}', [App\Http\Controllers\PostsController::class, 'postsData'])->name('posts.data');
-Route::post('posts/{posts}/comment', [App\Http\Controllers\PostsController::class, 'comment'])->name('post.comment');
-Route::post('comments/{post}', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment');
+Route::post('posts/{post}/comment', [App\Http\Controllers\PostsController::class, 'comment'])->name('post.comment');
+Route::post('posts/{post}/comment/store', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
 Route::get('comment/{comment}/edit', [App\Http\Controllers\CommentController::class, 'edit'])->name('comment.edit');
 Route::put('comments/{comment}', [\App\Http\Controllers\CommentController::class, 'update'])->name('comment.update');
 Route::delete('comment/{comment}', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comment.destroy');
-
+Route::delete('posts/{post}/delete', [App\Http\Controllers\PostsController::class, 'destroy'])->name('posts.delete');
 
 
 Route::controller(App\Http\Controllers\PostsController::class)->group(function () {
