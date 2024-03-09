@@ -64,13 +64,16 @@
                             <input type="search" class="form-control form-control-white text-bg-white" name="query"
                                 type="search" placeholder="Search..." aria-label="Search">
                         </form>
-                        <!-- profile picture -->
+                        
                         @auth
+                        @if(Auth::user()->profile_picture)
                         <div class="text-center">
                             <img src="{{ Auth::user()->profile_picture }}" alt="user-profile_picture"
                                 style="width: 40px; height: 40px; border-radius: 50%;">
                         </div>&nbsp;
+                        @endif
                         @endauth
+
 
                         <!-- Authentication Links -->
                         @guest

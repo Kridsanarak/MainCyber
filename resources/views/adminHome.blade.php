@@ -6,21 +6,29 @@
         <h3>กระทู้</h3>
         @csrf
         @foreach ($posts->sortByDesc('created_at') as $item)
-        <div class="card mb-4">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <a href="{{ url('/posts/data', ['id' => $item->id]) }}"
-                    style="color: #007bff; text-decoration: none;" onmouseover="this.style.color='#0056b3';"
-                    onmouseout="this.style.color='#007bff';">
-                    <h5 style="margin-left: 0.5rem;" class="card-title">{{ $item->topic }}</h5>
-                </a>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="float: left; margin-right: 10px;">
+                        @if($item->user && $item->user->profile_picture)
+                            <img style="max-width: 40px; max-height: 30px; border-radius: 50%;" 
+                                 src="{{ asset($item->user->profile_picture) }}" alt="User Profile Picture">
+                        @else
+                        @endif
+                    </div>
+
+                    <a href="{{ url('/posts/data', ['id' => $item->id]) }}" style="color: #007bff; text-decoration: none;"
+                        onmouseover="this.style.color='#0056b3';" onmouseout="this.style.color='#007bff';">
+                        <h5 class="card-title">{{ $item->topic }}</h5>
+                    </a>
+
+                    <p class="card-text">Posted by: {{ $item->user ? $item->user->name : 'Unknown User' }} • {{ $item->created_at }}</p>
+
+                    @if($item->post_pic)
+                        <img style="max-width: 100px; max-height: 100px; margin-right: 10px;"
+                             src="{{ asset($item->post_pic) }}" alt="Post Image">
+                    @endif
+                </div>
             </div>
-            <p style="margin-left: 1.5rem; " class="card-text">Posted by : {{ $item->users_name }} • {{ $item->updated_at }}</p>
-            @if($item->post_pic)
-            <img style="float: left; max-width: 100px; max-height: 100px; margin-right: 10px; margin-left: 1.5rem; margin-bottom: 1rem;"
-                src="{{ asset($item->post_pic) }}" alt="Post Image">
-            @endif
-            <p style="margin-left: 1.5rem; margin-bottom: 1rem;"  class="card-text">{{ $item->details }}</p>
-        </div>
         @endforeach
     </div>
     <div class="pagination justify-content-end">

@@ -13,7 +13,7 @@
                 @csrf
                 <!-- Propic -->
                 <div class="text-center">
-                    <img src="{{ Auth::user()->profile_picture }}" alt="user-profile_picture"
+                    <img src="{{ Auth::user()->profile_picture }}" alt="Please Upload Your Profile Image"
                         style="width: 150px; height: 150px; border-radius: 50%;">
                 </div><br>
                 <!------------>

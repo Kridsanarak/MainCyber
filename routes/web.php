@@ -52,7 +52,10 @@ Route::get('/member', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\Controller::class, 'welcome'])->name('welcome');
-Route::get('/member', [App\Http\Controllers\MemberController::class, 'index'])->name('member');;
+
+Route::get('/member', [App\Http\Controllers\MemberController::class, 'index'])->name('member');
+Route::get('searchMember', [App\Http\Controllers\UserController::class, 'searchMember']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home',[App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('isAdmin');
 

@@ -26,16 +26,16 @@ class UserController extends Controller
         return view('users.show', compact('users'));
     }
 
-    public function searchMember()
+    public function searchMember(Request $request)
     {
-        $search_text = $_GET['query'];
+        $search_text = $request->input('query');
         $users = User::where('name', 'LIKE', '%' . $search_text . '%')
-              ->orWhere('email', 'LIKE', '%' . $search_text . '%')
-              ->get();
-
-
-        return view('member',compact('users'));
+                      ->orWhere('email', 'LIKE', '%' . $search_text . '%')
+                      ->paginate(10);
+    
+        return view('member', compact('users'));
     }
+    
 
     public function update_profile(Request $request, $id)
     {

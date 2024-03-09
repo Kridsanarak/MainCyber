@@ -5,10 +5,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('welcome') }}" class="btn btn-primary float-end">Back</a>
-                    <h4 style="margin-top: 0.3rem;">รายชื่อสมาชิกทั้งหมด</h4>
+                    <a href="{{ route('welcome') }}" class="btn btn-primary float-end" style="margin-bottom: 1rem; margin-top: 0.5rem;">Back</a>
+                    <h4 style="margin-top: 0.7rem; margin-left: 0.5rem;">รายชื่อสมาชิกทั้งหมด</h4>
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" type= "get" action="{{ url('searchMember') }}">
-                        <input type="search" class="form-control form-control-white text-bg-white" name="query" type="search" placeholder="Search..." aria-label="Search">
+                        <input type="search" class="form-control form-control-white text-bg-white" style="margin-bottom: 1.0rem;" name="query" type="search" placeholder="Search..." aria-label="Search">
                     </form>
                 </div>
                 

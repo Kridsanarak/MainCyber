@@ -21,8 +21,9 @@ class Posts extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_name', 'name');
+        return $this->belongsTo(User::class, 'users_id');
     }
+    
     public function comments()
     {
         return $this->hasMany(Comment::class, 'posts_id');
