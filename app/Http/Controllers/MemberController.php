@@ -8,8 +8,10 @@ use App\Models\User;
 class MemberController extends Controller
 {
     public function index()
-    {
-        $users = User::all();
-        return view('member', compact('users'));
-    }
+{
+    $users = User::paginate(10);
+    return view('member', compact('users'));
+}
+
+    
 }

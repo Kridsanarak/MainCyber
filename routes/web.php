@@ -25,9 +25,12 @@ Route::get('/', function () {
     return view('welcome', compact('posts', 'users'));
 });
 
-Route::get('/editprofile', function () {
-    return view('editprofile');
-});
+Route::get('/update_profile', function () {
+    $user = Auth::user();
+    return view('editprofile', ['user' => $user]);
+})->name('update_profile');
+
+Route::post('/update_profile/{id}', 'App\Http\Controllers\UserController@update_profile')->name('update_profile');
 
 
 Route::get('/admin/posts', function () {
@@ -57,7 +60,7 @@ Route::get('/admin/users',[App\Http\Controllers\Controller::class, 'adminUsers']
 Route::get('/admin/posts', [App\Http\Controllers\Controller::class, 'adminPosts'])->name('admin.posts')->middleware('isAdmin');
 
 Route::get('/editprofile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('editprofile');
-Route::get('/userpost', [App\Http\Controllers\PostsController::class, 'userpost'])->name('userpost');
+Route::get('/mypost', [App\Http\Controllers\PostsController::class, 'mypost'])->name('mypost');
 
 
 Route::post('/update-name', [App\Http\Controllers\UserController::class, 'updateName'])->name('update-name');
@@ -90,6 +93,7 @@ Route::controller(App\Http\Controllers\UserController::class)->group(function ()
     Route::get('user/{id}/edit', 'edit');
     Route::put('user/{id}/edit', 'update');
     Route::get('user/{id}/delete', 'destroy');
-    
+    Route::get('searchMember', 'searchMember');
 });
+
 

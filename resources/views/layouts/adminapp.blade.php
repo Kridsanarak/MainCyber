@@ -11,18 +11,21 @@
     <title>Web Board</title>
 
     <!-- Fonts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Custom Styles -->
     <style>
-        body {
-            font-family: 'Prompt', sans-serif;
-        }
+    body {
+        font-family: 'Prompt', sans-serif;
+    }
     </style>
 </head>
 
@@ -40,8 +43,8 @@
                 <div class="bd-example">
                     <a href="{{ url('/posts/create')}}"><button type="button" class="btn btn-primary">+
                             เพิ่มกระทู้</button></a>
-                    <a href="{{ url('/admin/users')}}"><button type="button" class="btn btn-success">Users</button></a>
-                    <a href="{{ url('/admin/posts')}}"><button type="button" class="btn btn-warning">Posts</button></a>
+                    <a href="{{ url('/admin/users')}}"><button type="button"
+                            class="btn btn-success">สมาชิกทั้งหมด</button></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -56,27 +59,58 @@
                             <input type="search" class="form-control form-control-dark text-bg-white"
                                 placeholder="Search..." aria-label="Search">
                         </form>
+                       
+
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a href="{{ route('login') }}"><button type="button"
-                                    class="btn btn-outline-light me-2">Login</button></a>
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a href="{{ route('register') }}"><button type="button"
-                                    class="btn btn-warning">Register</button></a>
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                         @endif
                         @else
-                    
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">{{ __('Logout') }}</button>
-                            </form>
+                        <li class="nav-item dropdown">
+                            <button id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </button>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if(auth()->check() && auth()->user()->isAdmin())
+                                <a class="dropdown-item" href="{{ url('/admin/home')}}">
+                                    {{ __('Home') }}
+                                </a>
+                                @else
+                                <a class="dropdown-item" href="{{ url('/home')}}">
+                                    {{ __('Home') }}
+                                </a>
+                                @endif
+                                <a class="dropdown-item" href="{{ url('/mypost')}}">
+                                    {{ __('My Post') }}
+                                </a>
+
+
+                                <a class="dropdown-item" href="{{ url('/editprofile')}}">
+                                    {{ __('Edit Profile') }}
+                                </a>
+
+
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>

@@ -1,7 +1,9 @@
 version: '3'
 services:
 
-  #PHP Service
+  # Your existing Docker Compose content...
+
+  # PHP Service
   app:
     build:
       args:
@@ -22,6 +24,7 @@ services:
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
+
 
   #Nginx Service
   webserver:

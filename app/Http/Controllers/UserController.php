@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\HomeController;
 
 
 class UserController extends Controller
@@ -25,7 +26,41 @@ class UserController extends Controller
         return view('users.show', compact('users'));
     }
 
+    public function searchMember()
+    {
+        $search_text = $_GET['query'];
+        $users = User::where('name', 'LIKE', '%' . $search_text . '%')
+              ->orWhere('email', 'LIKE', '%' . $search_text . '%')
+              ->get();
+
+
+        return view('member',compact('users'));
+    }
+
+    public function update_profile(Request $request, $id)
+    {
+        $request->validate([
+            'profile_picture' => 'image|mimes:jpeg,png,jpg|max:100'
+        ]);
     
+        // ตรวจสอบว่ามีการอัพโหลดรูปภาพและเครื่องมือเหล่านี้ให้ตรวจสอบฟอร์มแบบ multipart/form-data ในแท็ก <form>
+        if ($request->hasFile('profile_picture')) {
+            $image_name = time() . '-' . $request->profile_picture->getClientOriginalName(); // ใช้เมทอด getOriginalClientName() เพื่อรับชื่อของไฟล์ที่อัพโหลดแท้จริง
+            $request->profile_picture->move(public_path('users'), $image_name); // ย้ายไฟล์ไปยังโฟลเดอร์ users ใน public directory
+            $path = "users/" . $image_name; // กำหนด path ที่ถูกต้องสำหรับฐานข้อมูล
+        } else {
+            // ถ้าไม่มีการอัพโหลดรูปภาพให้ใช้รูปภาพเดิม
+            $path = Auth::user()->profile_picture;
+        }
+    
+        $user = User::findOrFail($id); // ค้นหาข้อมูลผู้ใช้
+        $user->name = $request->name;
+        $user->profile_picture = $path;
+        $user->save(); // บันทึกข้อมูลผู้ใช้
+    
+        return redirect('editprofile');
+    }
+
     public function updateName(Request $request)
     {
         // รับข้อมูลจากแบบฟอร์ม
@@ -140,4 +175,5 @@ class UserController extends Controller
 
         return view('admin.users',compact('users'));
     }
+    
 }

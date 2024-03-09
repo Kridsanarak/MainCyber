@@ -22,7 +22,7 @@ class Controller extends BaseController
     public function adminUsers()
     {
         $users = User::all();
-        $users = User::paginate(5);
+        $users = User::paginate(10);
         return view('admin.users', compact('users'));
         
     }

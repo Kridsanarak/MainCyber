@@ -10,19 +10,29 @@
         <div class="b-example-divider"></div>
         <div class="d-grid gap-3">
             <div class="container mt-3">
-
+                @csrf
                 <!-- Propic -->
                 <div class="text-center">
-                    <img src="{{ asset('uploads/propic/image.png') }}" alt="Category Image"
-                        class="rounded-circle" style="width: 150px; height: 150px;">
+                    <img src="{{ Auth::user()->profile_picture }}" alt="user-profile_picture"
+                        style="width: 150px; height: 150px; border-radius: 50%;">
                 </div><br>
                 <!------------>
 
                 <h3 class="text-center">{{ Auth::user()->name }}</h3><br>
-                <div class="d-flex justify-content-center mb-3">
-                    <a href=""><button type="button" class="btn btn-secondary">Edit Profile
-                            Image</button></a>
-                </div>
+
+                <!-- profile picture -->
+                <form method="POST" action="{{ route('update_profile', Auth::user()->id) }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <!-- เพิ่ม CSRF token ที่นี่ -->
+                    <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+                    <div class="d-flex justify-content-center mb-3">
+                        <input id="imageName" type="file" class="form-control" name="profile_picture" style="width: 35%">&nbsp
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </div>
+                </form>
+
+
                 <div class="bg-body ">
                     <!-- เปลี่ยน username -->
                     <div class="my-3 p-3 bg-body rounded shadow-sm border">
@@ -46,17 +56,14 @@
                             <div class="input-group">
                                 <input type="password" class="form-control form-control-dark text-bg-gray"
                                     name="new_password" placeholder="Enter your new password" required>
-                                <button type="button" class="btn btn-outline-secondary"
-                                    id="toggleNewPassword">
+                                <button type="button" class="btn btn-outline-secondary" id="toggleNewPassword">
                                     <i class="bi bi-eye-slash" id="newPasswordIcon"></i>
                                 </button>
                             </div><br>
                             <div class="input-group">
                                 <input type="password" class="form-control form-control-dark text-bg-gray"
-                                    name="new_password_confirmation" placeholder="Confirm your new password"
-                                    required>
-                                <button type="button" class="btn btn-outline-secondary"
-                                    id="toggleConfirmNewPassword">
+                                    name="new_password_confirmation" placeholder="Confirm your new password" required>
+                                <button type="button" class="btn btn-outline-secondary" id="toggleConfirmNewPassword">
                                     <i class="bi bi-eye-slash" id="confirmNewPasswordIcon"></i>
                                 </button>
                             </div><br>
@@ -66,6 +73,7 @@
                             </div>
                         </form>
                     </div>
+
                     <!------------>
                 </div>
             </div>
@@ -75,25 +83,25 @@
 
 
 <script>
-    const toggleNewPassword = document.querySelector('#toggleNewPassword');
-    const toggleConfirmNewPassword = document.querySelector('#toggleConfirmNewPassword');
-    const newPassword = document.querySelector('input[name="new_password"]');
-    const confirmNewPassword = document.querySelector('input[name="new_password_confirmation"]');
-    const newPasswordIcon = document.querySelector('#newPasswordIcon');
-    const confirmNewPasswordIcon = document.querySelector('#confirmNewPasswordIcon');
+const toggleNewPassword = document.querySelector('#toggleNewPassword');
+const toggleConfirmNewPassword = document.querySelector('#toggleConfirmNewPassword');
+const newPassword = document.querySelector('input[name="new_password"]');
+const confirmNewPassword = document.querySelector('input[name="new_password_confirmation"]');
+const newPasswordIcon = document.querySelector('#newPasswordIcon');
+const confirmNewPasswordIcon = document.querySelector('#confirmNewPasswordIcon');
 
-    toggleNewPassword.addEventListener('click', function() {
-        const type = newPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        newPassword.setAttribute('type', type);
-        newPasswordIcon.classList.toggle('bi-eye-slash');
-        newPasswordIcon.classList.toggle('bi-eye');
-    });
+toggleNewPassword.addEventListener('click', function() {
+    const type = newPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    newPassword.setAttribute('type', type);
+    newPasswordIcon.classList.toggle('bi-eye-slash');
+    newPasswordIcon.classList.toggle('bi-eye');
+});
 
-    toggleConfirmNewPassword.addEventListener('click', function() {
-        const type = confirmNewPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmNewPassword.setAttribute('type', type);
-        confirmNewPasswordIcon.classList.toggle('bi-eye-slash');
-        confirmNewPasswordIcon.classList.toggle('bi-eye');
-    });
+toggleConfirmNewPassword.addEventListener('click', function() {
+    const type = confirmNewPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmNewPassword.setAttribute('type', type);
+    confirmNewPasswordIcon.classList.toggle('bi-eye-slash');
+    confirmNewPasswordIcon.classList.toggle('bi-eye');
+});
 </script>
 @endsection

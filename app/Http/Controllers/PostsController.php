@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Posts;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostsController extends Controller
 {
@@ -24,11 +26,11 @@ class PostsController extends Controller
     }
 
     // PostController.php
-    public function userpost()
+    public function mypost()
     {
         $posts = auth()->user()->posts;
         $posts = Posts::orderBy('created_at', 'desc')->paginate(100);
-        return view('posts.userpost', compact('posts'));
+        return view('posts.mypost', compact('posts'));
     }
 
     // Create Post
@@ -68,7 +70,12 @@ class PostsController extends Controller
             'users_name' => auth()->user()->name,
         ]);
 
-        return redirect()->route('home')->with('status','Posts Created Successfully');
+        
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.home')->with('status','Posts Created Successfully');
+        } else {
+            return redirect()->route('home')->with('status', 'Posts Created Successfully');
+        }
     }
 
     public function edit(int $id)
@@ -129,19 +136,25 @@ class PostsController extends Controller
 
     public function destroy(int $id)
     {
-        // Find post by ID
-        $posts = Posts::findOrFail($id);
-        
-        // Delete post picture if exists
-        if(File::exists($posts->post_pic)){
-            File::delete($posts->post_pic);
-        }
+    // Find post by ID
+    $posts = Posts::findOrFail($id);
+    
+    // Delete post picture if exists
+    if(File::exists($posts->post_pic)){
+        File::delete($posts->post_pic);
+    }
 
-        // Delete post
-        $posts->delete();
+    // Delete post
+    $posts->delete();
 
+    // Check if user is admin
+    if (Auth::user()->isAdmin()) {
+        return redirect()->route('admin.home')->with('status', 'Post Deleted');
+    } else {
         return redirect()->route('home')->with('status', 'Post Deleted');
     }
+    }
+
 
     public function comment(Posts $post)
     {

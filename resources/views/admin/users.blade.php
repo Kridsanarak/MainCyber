@@ -1,11 +1,11 @@
-@extends('layouts.adminapp')
+@extends('layouts.memberapp')
 @section('content')
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>รายชื่อสมาชิกทั้งหมด</h4>
+                    <h4 style="margin-top: 0.5rem">รายชื่อสมาชิกทั้งหมด</h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-striped">

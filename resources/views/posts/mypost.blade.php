@@ -5,8 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @csrf
                 <div class="card-header">กระทู้ของฉัน
-                    <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
+                @guest
+                <a href="{{ route('welcome') }}" class="btn btn-primary float-end">Back</a>
+                @endguest
+                @auth
+                @if(auth()->user()->isAdmin())
+                <a href="{{ route('admin.home') }}" class="btn btn-primary float-end">Back to Admin Home</a>
+                @else
+                <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
+                @endif
+                @endauth
                 </div>
 
                 <div class="card-body">
