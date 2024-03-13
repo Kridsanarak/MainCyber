@@ -24,14 +24,15 @@
                 <form method="POST" action="{{ route('update_profile', Auth::user()->id) }}"
                     enctype="multipart/form-data">
                     @csrf
-                    <!-- เพิ่ม CSRF token ที่นี่ -->
                     <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                     <div class="d-flex justify-content-center mb-3">
-                        <input id="imageName" type="file" class="form-control" name="profile_picture" style="width: 35%">&nbsp
-                        <input class="btn btn-primary" type="submit" value="Submit"> 
+                        <input id="profilePicture" type="file" class="form-control" name="profile_picture"
+                            style="width: 35%" accept=".jpg,.jpeg,.png">
+                        <input class="btn btn-primary" type="submit" value="Submit">
                     </div>
                     <p style="text-align: center; opacity: 0.5"> Profile Picture Supported Maximum 100 kb </p>
                 </form>
+
 
 
                 <div class="bg-body ">
@@ -81,6 +82,28 @@
         </div>
     </div>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('profilePicture');
+
+    fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        const fileSize = file.size;
+        const fileType = file.type.split('/')[0]; // Get the file type
+        const maxSize = 100 * 1024; // 100 KB
+
+        if (fileSize > maxSize) {
+            alert('The image size cannot exceed 100 KB.');
+            this.value = ''; // Clear file input
+        } else if (fileType !== 'image') {
+            alert('Only image files are allowed to upload.');
+            this.value = ''; // Clear file input
+        }
+    });
+});
+</script>
+
 
 
 <script>

@@ -105,32 +105,33 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100|string',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'nullable|string|min:8',
         ]);
     
         $user = User::findOrFail($id);
     
-        // ตรวจสอบว่ามีการเปลี่ยนแปลงรหัสผ่านหรือไม่
-        if ($request->filled('password')) {
-            $password = bcrypt($request->password); // เข้ารหัสรหัสผ่านใหม่
-        } else {
-            $password = $user->password; // ใช้รหัสผ่านเดิม
+        // Check if the user is authorized to update the user data
+        if (!$user->isAdmin()) {
+            return redirect()->back()->with('status', 'คุณไม่มีสิทธิ์แก้ไขข้อมูลผู้ใช้');
         }
     
-        // ถอดรหัสรหัสผ่านที่ถูกเข้ารหัสออก
-        $decodedPassword = password_verify($user->password, $request->password);
-    
+        // Update user data
         $updateData = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $password, // ใช้รหัสผ่านที่เข้ารหัสแล้ว
         ];
+    
+        // Check if password is provided and update it
+        if ($request->filled('password')) {
+            $updateData['password'] = bcrypt($request->password);
+        }
     
         $user->update($updateData);
     
-        return redirect('admin/users')->with('status','User Updated Successfully');
+        return redirect('admin/users')->with('status','ข้อมูลผู้ใช้ถูกอัปเดตเรียบร้อยแล้ว');
     }
+    
     
     
 

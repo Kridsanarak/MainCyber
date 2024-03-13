@@ -54,29 +54,35 @@ class CommentController extends Controller
     }
 
     public function update(Request $request, Comment $comment)
-    {
-        $request->validate([
-            'comment_text' => 'required',
-            'comment_pic' => 'image|mimes:jpeg,png,jpg',
-        ]);
-    
-        // Update comment text
-        $comment->comment_text = $request->comment_text;
-    
-        // Handle image update
-        if ($request->hasFile('comment_pic')) {
-            $file = $request->file('comment_pic');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $path = 'uploads/comment/';
-            $file->move($path, $filename);
-            $comment->comment_pic = $path . $filename;
-        }
-    
-        $comment->save();
-    
-        return redirect()->route('posts.data', ['id' => $comment->posts_id])->with('status', 'Comment updated successfully');
+{
+    $request->validate([
+        'comment_text' => 'required',
+        'comment_pic' => 'image|mimes:jpeg,png,jpg',
+    ]);
+
+    // Check if the user is authorized to update the comment
+    if (!auth()->user()->isAdmin() && $comment->users_id != auth()->id()) {
+        return redirect()->back()->with('status', 'คุณไม่มีสิทธิ์แก้ไขความคิดเห็นนี้');
     }
+
+    // Update comment text
+    $comment->comment_text = $request->comment_text;
+
+    // Handle image update if exists
+    if ($request->hasFile('comment_pic')) {
+        $file = $request->file('comment_pic');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'uploads/comment/';
+        $file->move($path, $filename);
+        $comment->comment_pic = $path . $filename;
+    }
+
+    $comment->save();
+
+    return redirect()->route('posts.data', ['id' => $comment->posts_id])->with('status', 'ความคิดเห็นได้รับการอัปเดตเรียบร้อยแล้ว');
+}
+
     
 
     public function destroy(Comment $comment)

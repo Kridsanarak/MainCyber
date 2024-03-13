@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Web Board</title>
+    <link rel="icon" type="image/png" href="/icon/130319-b-letter-free-download-image.png">
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -64,7 +65,7 @@
                             <input type="search" class="form-control form-control-white text-bg-white" name="query"
                                 type="search" placeholder="Search..." aria-label="Search">
                         </form>
-                        
+
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
@@ -124,96 +125,130 @@
 
         <main class="py-4">
             <main class="container">
-    <div class="card mb-4">
-        <div class="card-body">
-            <h4>
-                @guest
-                <a href="{{ route('welcome') }}" class="btn btn-primary float-end">Back</a>
-                @endguest
-                @auth
-                @if(auth()->user()->isAdmin())
-                <a href="{{ route('admin.home') }}" class="btn btn-primary float-end">Back to Admin Home</a>
-                @else
-                <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
-                @endif
-                @endauth
-            </h4>
-            <h3 class="card-title">{{ $posts->topic }}</h3>
-            <p class="card-text">Posted by: {{ $posts->users_name }} • {{ $posts->updated_at }}</p>
-            <p class="card-text">{{ $posts->details }}</p>
-            @if($posts->post_pic)
-            <img class="img-fluid mb-3" style="max-width: 300px; max-height: 300px;" 
-             src="{{ asset($posts->post_pic) }}" alt="Post Image">
-            @endif
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4>
+                            @guest
+                            <a href="{{ route('welcome') }}" class="btn btn-primary float-end">Back</a>
+                            @endguest
+                            @auth
+                            @if(auth()->user()->isAdmin())
+                            <a href="{{ route('admin.home') }}" class="btn btn-primary float-end">Back to Admin Home</a>
+                            @else
+                            <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
+                            @endif
+                            @endauth
+                        </h4>
+                        <h3 class="card-title">{{ $posts->topic }}</h3>
+                        <p class="card-text">Posted by: {{ $posts->users_name }} • {{ $posts->updated_at }}</p>
+                        <p class="card-text">{{ $posts->details }}</p>
+                        @if($posts->post_pic)
+                        <img class="img-fluid mb-3" style="max-width: 300px; max-height: 300px;"
+                            src="{{ asset($posts->post_pic) }}" alt="Post Image">
+                        @endif
 
-            <!-- edit/delete post -->
-            @if(auth()->check() && (auth()->user()->id === $posts->users_id || auth()->user()->isAdmin()))
-            <div class="mb-3">
-                <a href="{{ url('posts/'.$posts->id.'/edit') }}" class="btn btn-sm btn-warning">Edit Post</a>
-                <form action="{{ url('posts/'.$posts->id.'/delete') }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this post and its comments?')">Delete Post</button>
-                </form>
-            </div>
-            @endif
-            <!-- end -->
+                        <!-- edit/delete post -->
+                        @if(auth()->check() && (auth()->user()->id === $posts->users_id || auth()->user()->isAdmin()))
+                        <div class="mb-3">
+                            <a href="{{ url('posts/'.$posts->id.'/edit') }}" class="btn btn-sm btn-warning">Edit
+                                Post</a>
+                            <form action="{{ url('posts/'.$posts->id.'/delete') }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this post and its comments?')">Delete
+                                    Post</button>
+                            </form>
+                        </div>
+                        @endif
+                        <!-- end -->
 
 
-        </div>
-    </div>
-    <div class="card mb-3">
-        <div class="card-body">
-            <form action="{{ route('comment.store', ['post' => $posts->id]) }}" method="post" 
-                enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="post_id" value="{{ $posts->id }}">
-                <div class="mb-3">
-                    <label for="comment_text" class="form-label">Comment</label>
-                    <textarea class="form-control" id="comment_text" name="comment_text" rows="3" required></textarea>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="comment_pic" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="comment_pic" name="comment_pic">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form action="{{ route('comment.store', ['post' => $posts->id]) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $posts->id }}">
+                            <div class="mb-3">
+                                <label for="comment_text" class="form-label">Comment</label>
+                                <textarea class="form-control" id="comment_text" name="comment_text" rows="3"
+                                    required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment_pic" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="comment_pic" name="comment_pic">
+                                <p class="small mb-0 mt-2"><b>Note : </b>Only JPG, JPEG, PNG files are allowed to upload
+                                    and the image size cannot exceed 2MB.</p>
+                            </div>
+
+                            @auth
+                            <!-- Check if user is authenticated -->
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            @else
+                            <p>&nbspYou must <a href="{{ route('login') }}">login</a> to submit a comment.</p>
+                            @endauth
+                        </form>
+
+                    </div>
                 </div>
-                @auth
-                <!-- Check if user is authenticated -->
-                <button type="submit" class="btn btn-primary">Submit</button>
-                @else
-                <p>&nbspYou must <a href="{{ route('login') }}">login</a> to submit a comment.</p>
-                @endauth
-            </form>
+                @foreach ($posts->comments as $comment)
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p>Comment by: {{ $comment->user->name }} • {{ $comment->updated_at }}</p>
+                        <h5 class="card-text">{{ $comment->comment_text }}</h5>
+                        @if ($comment->comment_pic)
+                        <img style="float: left; max-width: 300px; max-height: 300px; margin-right: 10px;"
+                            src="{{ asset($comment->comment_pic) }}" alt="Comment Image">
+                        @endif
 
-        </div>
-    </div>
-    @foreach ($posts->comments as $comment)
-    <div class="card mb-3">
-        <div class="card-body">
-            <p>Comment by: {{ $comment->user->name }} • {{ $comment->updated_at }}</p>
-            <h5 class="card-text">{{ $comment->comment_text }}</h5>
-            @if ($comment->comment_pic)
-            <img style="float: left; max-width: 300px; max-height: 300px; margin-right: 10px;"
-                src="{{ asset($comment->comment_pic) }}" alt="Comment Image">
-            @endif
-
-            <!-- edit/delete comment -->
-            @if(auth()->check() && (auth()->user()->id === $comment->users_id || auth()->user()->isAdmin()))
-            <div class="mb-3">
-                <a href="{{ route('comment.edit', ['comment' => $comment->id]) }}" class="btn btn-sm btn-warning">Edit Comment</a>
-                <form action="{{ route('comment.destroy', ['comment' => $comment->id]) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this comment?')">Delete Comment</button>
-                </form>
-            </div>
-            @endif
-            <!-- End --> 
-        </div>
-    </div>
-    @endforeach
-</main>
+                        <!-- edit/delete comment -->
+                        @if(auth()->check() && (auth()->user()->id === $comment->users_id || auth()->user()->isAdmin()))
+                        <div class="mb-3">
+                            <a href="{{ route('comment.edit', ['comment' => $comment->id]) }}"
+                                class="btn btn-sm btn-warning">Edit Comment</a>
+                            <form action="{{ route('comment.destroy', ['comment' => $comment->id]) }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this comment?')">Delete
+                                    Comment</button>
+                            </form>
+                        </div>
+                        @endif
+                        <!-- End -->
+                    </div>
+                </div>
+                @endforeach
+            </main>
         </main>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileInput = document.getElementById('comment_pic');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            const fileSize = file.size;
+            const fileType = file.type;
+            const validExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
+            const maxSize = 2 * 1024 * 1024; // 2MB
+
+            if (!validExtensions.includes(fileType)) {
+                alert('Only JPG, JPEG, PNG files are allowed to upload.');
+                this.value = ''; // Clear file input
+            } else if (fileSize > maxSize) {
+                alert('The image size cannot exceed 2MB.');
+                this.value = ''; // Clear file input
+            }
+        });
+    });
+    </script>
+
     <!-- Bootstrap Bundle JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

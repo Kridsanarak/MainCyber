@@ -38,20 +38,20 @@ class PostsController extends Controller
     {
         return view('posts.create');
     }
-
+    
     public function store(Request $request)
     {
         // Validate request data
         $request->validate([
             'topic' => 'required|max:100|string',
             'details' => 'required',
-            'post_pic' => 'nullable|image|mimes:jpeg,png,jpg',
+            'post_pic' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Maximum size 2MB
         ]);
-
+    
         // Initialize variables
         $path = ''; // Initialize path as empty string
         $filename = ''; // Initialize filename as empty string
-
+    
         if($request->hasFile('post_pic')){
             // Handle file upload
             $file = $request->file('post_pic');
@@ -60,7 +60,7 @@ class PostsController extends Controller
             $path = 'uploads/posts/';
             $file->move($path, $filename);
         }
-
+    
         // Create new post
         Posts::create([
             'topic' => $request->topic,
@@ -69,14 +69,16 @@ class PostsController extends Controller
             'users_id' => auth()->user()->id,
             'users_name' => auth()->user()->name,
         ]);
-
-        
+    
+        // Redirect based on user role
         if (Auth::user()->isAdmin()) {
             return redirect()->route('admin.home')->with('status','Posts Created Successfully');
         } else {
             return redirect()->route('home')->with('status', 'Posts Created Successfully');
         }
     }
+    
+    
 
     public function edit(int $id)
     {
@@ -86,53 +88,46 @@ class PostsController extends Controller
     }
 
     public function update(Request $request, int $id)
-    {
-        // Validate request data
-        $request->validate([
-            'topic' => 'required|max:100|string',
-            'details' => 'required',
-            'post_pic' => 'nullable|image|mimes:jpeg,png,jpg',
-        ]);
-    
-        // Find post by ID
-        $posts = Posts::findOrFail($id);
-    
-        if($request->hasFile('post_pic')){
-            // Handle file upload
-            $file = $request->file('post_pic');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $path = 'uploads/posts/';
-            $file->move($path, $filename);
-    
-            // Delete old post picture
-            if(File::exists($posts->post_pic)){
-                File::delete($posts->post_pic);
-            }
-        }
-        
-        // Update post
-        $posts->update([
-            'topic' => $request->topic,
-            'details' => $request->details,
-        ]);
+{
+    // Validate request data
+    $request->validate([
+        'topic' => 'required|max:100|string',
+        'details' => 'required',
+        'post_pic' => 'nullable|image|mimes:jpeg,png,jpg',
+    ]);
 
-        // Prepare update data
-        $updateData = [
-            'topic' => $request->topic,
-            'details' => $request->details,
-        ];
-    
-        // Update post picture if exists
-        if(isset($filename)){
-            $updateData['post_pic'] = $path.$filename;
-        }
-    
-        $posts->update($updateData);
-        
-        
-        return redirect()->route('posts.data', ['id' => $posts->id])->with('status','Post Updated');
+    // Find post by ID
+    $posts = Posts::findOrFail($id);
+
+    // Check if the user is authorized to update the post
+    if (!auth()->user()->isAdmin() && $posts->users_id != auth()->id()) {
+        return redirect()->route('posts.data', ['id' => $posts->id])->with('status', 'คุณไม่มีสิทธิ์แก้ไขโพสต์นี้');
     }
+
+    // Handle file upload if exists
+    if ($request->hasFile('post_pic')) {
+        $file = $request->file('post_pic');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'uploads/posts/';
+        $file->move($path, $filename);
+
+        // Delete old post picture
+        if (File::exists($posts->post_pic)) {
+            File::delete($posts->post_pic);
+        }
+
+        // Update post picture
+        $posts->post_pic = $path . $filename;
+    }
+
+    // Update post details
+    $posts->topic = $request->topic;
+    $posts->details = $request->details;
+    $posts->save();
+
+    return redirect()->route('posts.data', ['id' => $posts->id])->with('status', 'โพสต์ได้รับการอัปเดตเรียบร้อยแล้ว');
+}
 
     public function destroy(int $id)
     {

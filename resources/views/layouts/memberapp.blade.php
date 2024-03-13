@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Web Board</title>
+    <link rel="icon" type="image/png" href="/icon/130319-b-letter-free-download-image.png">
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">

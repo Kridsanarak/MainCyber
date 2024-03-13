@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Web Board</title>
+    <link rel="icon" type="image/png" href="/icon/130319-b-letter-free-download-image.png">
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -123,57 +124,77 @@
         </nav>
 
         <main class="py-4">
-            <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-12">
+        <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
 
-                    @if (session('status'))
-                    <div class="alert alert-success">{{session('status')}}</div>
-                    @endif
+            @if (session('status'))
+            <div class="alert alert-success">{{session('status')}}</div>
+            @endif
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>เพิ่มกระทู้
-                                @if(auth()->user()->isAdmin())
-                                <a href="{{ route('admin.home') }}" class="btn btn-primary float-end">Back to Admin</a>
+            <div class="card">
+                <div class="card-header">
+                    <h4>เพิ่มกระทู้
+                        @if(auth()->user()->isAdmin())
+                        <a href="{{ route('admin.home') }}" class="btn btn-primary float-end">Back to Admin</a>
+                        @else
+                        <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
+                        @endif
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form id="postForm" action="{{ url('posts/create') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
 
-                                @else
-                                <a href="{{ route('home') }}" class="btn btn-primary float-end">Back</a>
-                                @endif
-                            </h4>
+                        <div class="mb-3">
+                            <label>หัวข้อกระทู้ :</label>
+                            <input type="text" name="topic" class="form-control" value="{{ old('topic') }}" />
+                            @error('topic') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <div class="card-body">
-                            <form action="{{ url('posts/create') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-
-                                <div class="mb-3">
-                                    <label>หัวข้อกระทู้ :</label>
-                                    <input type="text" name="topic" class="form-control" value="{{ old('topic') }}" />
-                                    @error('topic') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label>รายละเอียดกระทู้ :</label>
-                                    <textarea name="details" class="form-control" rows="3">{{ old('details') }}</textarea>
-                                    @error('details') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label>เพิ่มรูปภาพ :</label>
-                                    <input type="file" name="post_pic" class="form-control" />
-                                    <p class="small mb-0 mt-2"><b>Note : </b>Only JPG, JPEG, PNG files are allowed to upload.</p>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-
-                            </form>
-
+                        <div class="mb-3">
+                            <label>รายละเอียดกระทู้ :</label>
+                            <textarea name="details" class="form-control" rows="3">{{ old('details') }}</textarea>
+                            @error('details') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                    </div>
+                        <div class="mb-3">
+                            <label>เพิ่มรูปภาพ :</label>
+                            <input type="file" name="post_pic" class="form-control" id="postPicInput" />
+                            <p class="small mb-0 mt-2"><b>Note : </b>Only JPG, JPEG, PNG files are allowed to upload.</p>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
         </div>
+    </div>
+</div>
         </main>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('postPicInput');
+
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            const fileSize = file.size;
+            const fileType = file.type;
+            const validExtensions = ['image/jpeg', 'image/png', 'image/jpg'];
+            const maxSize = 2 * 1024 * 1024; // 2MB
+
+            if (!validExtensions.includes(fileType)) {
+                alert('Only JPG, JPEG, PNG files are allowed to upload.');
+                this.value = ''; // Clear file input
+            } else if (fileSize > maxSize) {
+                alert('The image size cannot exceed 2MB.');
+                this.value = ''; // Clear file input
+            }
+        });
+    });
+</script>
     <!-- Bootstrap Bundle JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
