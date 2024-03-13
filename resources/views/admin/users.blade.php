@@ -15,7 +15,6 @@
                                 <th>ID</th>
                                 <th>ชื่อ</th>
                                 <th>อีเมล</th>
-                                <th>รหัสผ่าน</th>
                                 <th>Action</th>
                         </thead>
                         <tbody>
@@ -24,7 +23,6 @@
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->password}}</td>
                                 <td>
                                     <a href="{{ url('user/'.$user->id.'/edit') }}" class="btn btn-warning mx-2">Edit</a>
                                     <a

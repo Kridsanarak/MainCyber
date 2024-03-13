@@ -185,4 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
+    'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
 ];

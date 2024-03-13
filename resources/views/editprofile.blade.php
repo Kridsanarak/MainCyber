@@ -28,8 +28,9 @@
                     <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                     <div class="d-flex justify-content-center mb-3">
                         <input id="imageName" type="file" class="form-control" name="profile_picture" style="width: 35%">&nbsp
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" type="submit" value="Submit"> 
                     </div>
+                    <p style="text-align: center; opacity: 0.5"> Profile Picture Supported Maximum 100 kb </p>
                 </form>
 
 

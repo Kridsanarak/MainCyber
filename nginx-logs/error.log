@@ -1288,3 +1288,225 @@
 2024/03/09 14:59:03 [notice] 1#1: start worker process 21
 2024/03/09 14:59:03 [notice] 1#1: start worker process 22
 2024/03/09 14:59:03 [notice] 1#1: start worker process 23
+2024/03/09 15:27:41 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/09 15:27:41 [notice] 21#21: gracefully shutting down
+2024/03/09 15:27:41 [notice] 21#21: exiting
+2024/03/09 15:27:41 [notice] 23#23: gracefully shutting down
+2024/03/09 15:27:41 [notice] 23#23: exiting
+2024/03/09 15:27:41 [notice] 22#22: gracefully shutting down
+2024/03/09 15:27:41 [notice] 22#22: exiting
+2024/03/09 15:27:41 [notice] 23#23: exit
+2024/03/09 15:27:41 [notice] 22#22: exit
+2024/03/09 15:27:41 [notice] 21#21: exit
+2024/03/09 15:27:41 [notice] 20#20: gracefully shutting down
+2024/03/09 15:27:41 [notice] 20#20: exiting
+2024/03/09 15:27:41 [notice] 20#20: exit
+2024/03/09 15:27:41 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/09 15:27:41 [notice] 1#1: worker process 22 exited with code 0
+2024/03/09 15:27:41 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:27:41 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/03/09 15:27:41 [notice] 1#1: worker process 21 exited with code 0
+2024/03/09 15:27:41 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:27:41 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/03/09 15:27:41 [notice] 1#1: worker process 20 exited with code 0
+2024/03/09 15:27:41 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:27:41 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2024/03/09 15:27:41 [notice] 1#1: worker process 23 exited with code 0
+2024/03/09 15:27:41 [notice] 1#1: exit
+2024/03/09 15:39:25 [notice] 1#1: using the "epoll" event method
+2024/03/09 15:39:25 [notice] 1#1: nginx/1.25.4
+2024/03/09 15:39:25 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/09 15:39:25 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/09 15:39:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/09 15:39:25 [notice] 1#1: start worker processes
+2024/03/09 15:39:25 [notice] 1#1: start worker process 20
+2024/03/09 15:39:25 [notice] 1#1: start worker process 21
+2024/03/09 15:39:25 [notice] 1#1: start worker process 22
+2024/03/09 15:39:25 [notice] 1#1: start worker process 23
+2024/03/09 15:39:33 [error] 21#21: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 10.80.80.227, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://192.168.0.3:9000", host: "10.80.57.34"
+2024/03/09 15:42:22 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/09 15:42:22 [notice] 20#20: gracefully shutting down
+2024/03/09 15:42:22 [notice] 20#20: exiting
+2024/03/09 15:42:22 [notice] 23#23: gracefully shutting down
+2024/03/09 15:42:22 [notice] 23#23: exiting
+2024/03/09 15:42:22 [notice] 20#20: exit
+2024/03/09 15:42:22 [notice] 23#23: exit
+2024/03/09 15:42:22 [notice] 21#21: gracefully shutting down
+2024/03/09 15:42:22 [notice] 21#21: exiting
+2024/03/09 15:42:22 [notice] 21#21: exit
+2024/03/09 15:42:22 [notice] 22#22: gracefully shutting down
+2024/03/09 15:42:22 [notice] 22#22: exiting
+2024/03/09 15:42:22 [notice] 22#22: exit
+2024/03/09 15:42:22 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2024/03/09 15:42:22 [notice] 1#1: worker process 23 exited with code 0
+2024/03/09 15:42:22 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:42:22 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/09 15:42:22 [notice] 1#1: worker process 22 exited with code 0
+2024/03/09 15:42:22 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:42:22 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/03/09 15:42:22 [notice] 1#1: worker process 21 exited with code 0
+2024/03/09 15:42:22 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/09 15:42:22 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/03/09 15:42:22 [notice] 1#1: worker process 20 exited with code 0
+2024/03/09 15:42:22 [notice] 1#1: exit
+2024/03/09 15:42:50 [notice] 1#1: using the "epoll" event method
+2024/03/09 15:42:50 [notice] 1#1: nginx/1.25.4
+2024/03/09 15:42:50 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/09 15:42:50 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/09 15:42:50 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/09 15:42:50 [notice] 1#1: start worker processes
+2024/03/09 15:42:50 [notice] 1#1: start worker process 20
+2024/03/09 15:42:50 [notice] 1#1: start worker process 21
+2024/03/09 15:42:50 [notice] 1#1: start worker process 22
+2024/03/09 15:42:50 [notice] 1#1: start worker process 23
+2024/03/10 13:24:00 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/10 13:24:00 [notice] 23#23: gracefully shutting down
+2024/03/10 13:24:00 [notice] 22#22: gracefully shutting down
+2024/03/10 13:24:00 [notice] 23#23: exiting
+2024/03/10 13:24:00 [notice] 22#22: exiting
+2024/03/10 13:24:00 [notice] 20#20: gracefully shutting down
+2024/03/10 13:24:00 [notice] 20#20: exiting
+2024/03/10 13:24:00 [notice] 21#21: gracefully shutting down
+2024/03/10 13:24:00 [notice] 21#21: exiting
+2024/03/10 13:24:00 [notice] 21#21: exit
+2024/03/10 13:24:00 [notice] 20#20: exit
+2024/03/10 13:24:00 [notice] 22#22: exit
+2024/03/10 13:24:00 [notice] 23#23: exit
+2024/03/10 13:24:01 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/03/10 13:24:01 [notice] 1#1: worker process 20 exited with code 0
+2024/03/10 13:24:01 [notice] 1#1: worker process 22 exited with code 0
+2024/03/10 13:24:01 [notice] 1#1: worker process 23 exited with code 0
+2024/03/10 13:24:01 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 13:24:01 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/10 13:24:01 [notice] 1#1: worker process 21 exited with code 0
+2024/03/10 13:24:01 [notice] 1#1: exit
+2024/03/10 13:24:59 [notice] 1#1: using the "epoll" event method
+2024/03/10 13:24:59 [notice] 1#1: nginx/1.25.4
+2024/03/10 13:24:59 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/10 13:24:59 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/10 13:24:59 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/10 13:24:59 [notice] 1#1: start worker processes
+2024/03/10 13:24:59 [notice] 1#1: start worker process 21
+2024/03/10 13:24:59 [notice] 1#1: start worker process 22
+2024/03/10 13:24:59 [notice] 1#1: start worker process 23
+2024/03/10 13:24:59 [notice] 1#1: start worker process 24
+2024/03/10 13:29:11 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/10 13:29:11 [notice] 23#23: gracefully shutting down
+2024/03/10 13:29:11 [notice] 21#21: gracefully shutting down
+2024/03/10 13:29:11 [notice] 21#21: exiting
+2024/03/10 13:29:11 [notice] 21#21: exit
+2024/03/10 13:29:11 [notice] 23#23: exiting
+2024/03/10 13:29:11 [notice] 23#23: exit
+2024/03/10 13:29:11 [notice] 22#22: gracefully shutting down
+2024/03/10 13:29:11 [notice] 22#22: exiting
+2024/03/10 13:29:11 [notice] 22#22: exit
+2024/03/10 13:29:11 [notice] 24#24: gracefully shutting down
+2024/03/10 13:29:11 [notice] 24#24: exiting
+2024/03/10 13:29:11 [notice] 24#24: exit
+2024/03/10 13:29:11 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/03/10 13:29:11 [notice] 1#1: worker process 21 exited with code 0
+2024/03/10 13:29:11 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 13:29:11 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2024/03/10 13:29:11 [notice] 1#1: worker process 22 exited with code 0
+2024/03/10 13:29:11 [notice] 1#1: worker process 23 exited with code 0
+2024/03/10 13:29:11 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 13:29:11 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/10 13:29:11 [notice] 1#1: signal 17 (SIGCHLD) received from 24
+2024/03/10 13:29:11 [notice] 1#1: worker process 24 exited with code 0
+2024/03/10 13:29:11 [notice] 1#1: exit
+2024/03/10 13:30:05 [notice] 1#1: using the "epoll" event method
+2024/03/10 13:30:05 [notice] 1#1: nginx/1.25.4
+2024/03/10 13:30:05 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/10 13:30:05 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/10 13:30:05 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/10 13:30:05 [notice] 1#1: start worker processes
+2024/03/10 13:30:05 [notice] 1#1: start worker process 20
+2024/03/10 13:30:05 [notice] 1#1: start worker process 21
+2024/03/10 13:30:05 [notice] 1#1: start worker process 22
+2024/03/10 13:30:05 [notice] 1#1: start worker process 23
+2024/03/10 16:08:38 [error] 21#21: *390 client intended to send too large body: 1691886 bytes, client: 10.80.87.194, server: , request: "POST /posts/30/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/30"
+2024/03/10 16:08:40 [error] 21#21: *410 client intended to send too large body: 1691886 bytes, client: 10.80.87.194, server: , request: "POST /posts/30/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/30"
+2024/03/10 16:08:42 [error] 21#21: *411 client intended to send too large body: 1691886 bytes, client: 10.80.87.194, server: , request: "POST /posts/30/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/30"
+2024/03/10 16:08:46 [error] 21#21: *412 client intended to send too large body: 1691886 bytes, client: 10.80.87.194, server: , request: "POST /posts/30/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/30"
+2024/03/10 16:08:49 [error] 21#21: *413 client intended to send too large body: 1691886 bytes, client: 10.80.87.194, server: , request: "POST /posts/30/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/30"
+2024/03/10 16:53:28 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/10 16:53:28 [notice] 20#20: gracefully shutting down
+2024/03/10 16:53:28 [notice] 20#20: exiting
+2024/03/10 16:53:28 [notice] 21#21: gracefully shutting down
+2024/03/10 16:53:28 [notice] 21#21: exiting
+2024/03/10 16:53:28 [notice] 20#20: exit
+2024/03/10 16:53:28 [notice] 23#23: gracefully shutting down
+2024/03/10 16:53:28 [notice] 23#23: exiting
+2024/03/10 16:53:28 [notice] 22#22: gracefully shutting down
+2024/03/10 16:53:28 [notice] 22#22: exiting
+2024/03/10 16:53:28 [notice] 21#21: exit
+2024/03/10 16:53:28 [notice] 22#22: exit
+2024/03/10 16:53:28 [notice] 23#23: exit
+2024/03/10 16:53:29 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/10 16:53:29 [notice] 1#1: worker process 22 exited with code 0
+2024/03/10 16:53:29 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 16:53:29 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/03/10 16:53:29 [notice] 1#1: worker process 21 exited with code 0
+2024/03/10 16:53:29 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 16:53:29 [notice] 1#1: signal 17 (SIGCHLD) received from 20
+2024/03/10 16:53:29 [notice] 1#1: worker process 20 exited with code 0
+2024/03/10 16:53:29 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 16:53:29 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2024/03/10 16:53:29 [notice] 1#1: worker process 23 exited with code 0
+2024/03/10 16:53:29 [notice] 1#1: exit
+2024/03/10 16:55:02 [notice] 1#1: using the "epoll" event method
+2024/03/10 16:55:02 [notice] 1#1: nginx/1.25.4
+2024/03/10 16:55:02 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/10 16:55:02 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/10 16:55:02 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/10 16:55:02 [notice] 1#1: start worker processes
+2024/03/10 16:55:02 [notice] 1#1: start worker process 21
+2024/03/10 16:55:02 [notice] 1#1: start worker process 22
+2024/03/10 16:55:02 [notice] 1#1: start worker process 23
+2024/03/10 16:55:02 [notice] 1#1: start worker process 24
+2024/03/10 17:10:21 [error] 23#23: *79 client intended to send too large body: 1403476 bytes, client: 10.70.20.198, server: , request: "POST /update_profile/12 HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/editprofile"
+2024/03/10 17:43:10 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/03/10 17:43:10 [notice] 21#21: gracefully shutting down
+2024/03/10 17:43:10 [notice] 24#24: gracefully shutting down
+2024/03/10 17:43:10 [notice] 21#21: exiting
+2024/03/10 17:43:10 [notice] 24#24: exiting
+2024/03/10 17:43:10 [notice] 21#21: exit
+2024/03/10 17:43:10 [notice] 23#23: gracefully shutting down
+2024/03/10 17:43:10 [notice] 24#24: exit
+2024/03/10 17:43:10 [notice] 22#22: gracefully shutting down
+2024/03/10 17:43:10 [notice] 22#22: exiting
+2024/03/10 17:43:10 [notice] 22#22: exit
+2024/03/10 17:43:11 [notice] 1#1: signal 17 (SIGCHLD) received from 24
+2024/03/10 17:43:11 [notice] 1#1: worker process 24 exited with code 0
+2024/03/10 17:43:11 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 17:43:11 [notice] 1#1: signal 17 (SIGCHLD) received from 21
+2024/03/10 17:43:11 [notice] 1#1: worker process 21 exited with code 0
+2024/03/10 17:43:11 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/10 17:43:11 [notice] 1#1: signal 17 (SIGCHLD) received from 22
+2024/03/10 17:43:11 [notice] 1#1: worker process 22 exited with code 0
+2024/03/10 17:43:11 [notice] 1#1: signal 29 (SIGIO) received
+2024/03/11 06:28:01 [notice] 1#1: using the "epoll" event method
+2024/03/11 06:28:01 [notice] 1#1: nginx/1.25.4
+2024/03/11 06:28:01 [notice] 1#1: built by gcc 12.2.1 20220924 (Alpine 12.2.1_git20220924-r10) 
+2024/03/11 06:28:01 [notice] 1#1: OS: Linux 5.4.0-171-generic
+2024/03/11 06:28:01 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/03/11 06:28:01 [notice] 1#1: start worker processes
+2024/03/11 06:28:01 [notice] 1#1: start worker process 20
+2024/03/11 06:28:01 [notice] 1#1: start worker process 21
+2024/03/11 06:28:01 [notice] 1#1: start worker process 22
+2024/03/11 06:28:01 [notice] 1#1: start worker process 23
+2024/03/11 08:25:39 [error] 23#23: *474 client intended to send too large body: 1372867611 bytes, client: 10.80.52.231, server: , request: "POST /posts/35/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/35"
+2024/03/11 08:26:17 [error] 23#23: *485 client intended to send too large body: 1764312 bytes, client: 10.80.52.231, server: , request: "POST /posts/35/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/35"
+2024/03/11 08:26:31 [error] 23#23: *491 client intended to send too large body: 11906206 bytes, client: 10.80.52.231, server: , request: "POST /posts/35/comment/store HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/data/35"
+2024/03/11 08:27:18 [error] 23#23: *492 client intended to send too large body: 1764323 bytes, client: 10.80.52.231, server: , request: "POST /posts/create HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/create"
+2024/03/11 08:30:02 [error] 23#23: *493 client intended to send too large body: 1764220 bytes, client: 10.80.52.231, server: , request: "POST /update_profile/16 HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/editprofile"
+2024/03/11 18:50:10 [error] 20#20: *3022 directory index of "/var/www/public/uploads/posts/" is forbidden, client: 10.70.20.231, server: , request: "GET /uploads/posts/ HTTP/1.1", host: "10.80.57.34"
+2024/03/11 18:50:12 [error] 20#20: *3022 directory index of "/var/www/public/uploads/" is forbidden, client: 10.70.20.231, server: , request: "GET /uploads/ HTTP/1.1", host: "10.80.57.34"
+2024/03/11 18:50:15 [error] 20#20: *3022 directory index of "/var/www/public/uploads/" is forbidden, client: 10.70.20.231, server: , request: "GET /uploads/ HTTP/1.1", host: "10.80.57.34"
+2024/03/11 19:18:36 [error] 21#21: *3341 directory index of "/var/www/public/users/" is forbidden, client: 10.30.42.124, server: , request: "GET /users/ HTTP/1.1", host: "10.80.57.34"
+2024/03/12 15:10:39 [error] 21#21: *6794 client intended to send too large body: 2791987 bytes, client: 10.70.20.58, server: , request: "POST /posts/create HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/create"
+2024/03/12 17:38:51 [error] 22#22: *7392 client intended to send too large body: 1837051 bytes, client: 10.52.110.122, server: , request: "POST /posts/create HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/create"
+2024/03/12 17:39:00 [error] 20#20: *7393 client intended to send too large body: 1837051 bytes, client: 10.52.110.122, server: , request: "POST /posts/create HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/create"
+2024/03/12 17:40:00 [error] 20#20: *7413 client intended to send too large body: 1837163 bytes, client: 10.52.110.122, server: , request: "POST /posts/50/edit HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/posts/50/edit"
+2024/03/13 06:10:20 [error] 20#20: *9282 client intended to send too large body: 2151156 bytes, client: 10.52.113.188, server: , request: "POST /update_profile/36 HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/editprofile"
+2024/03/13 06:10:28 [error] 20#20: *9295 client intended to send too large body: 2151156 bytes, client: 10.52.113.188, server: , request: "POST /update_profile/36 HTTP/1.1", host: "10.80.57.34", referrer: "http://10.80.57.34/editprofile"

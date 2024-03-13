@@ -164,7 +164,7 @@
     </div>
     <div class="card mb-3">
         <div class="card-body">
-            <form action="{{ route('comment.store', ['post' => $posts->id]) }}" method="post"
+            <form action="{{ route('comment.store', ['post' => $posts->id]) }}" method="post" 
                 enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="post_id" value="{{ $posts->id }}">

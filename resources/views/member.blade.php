@@ -16,21 +16,17 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr class="text-center">
-                                <th>ชื่อ</th>
-                                <th>อีเมล</th>
+                                <th>ชื่อผู้ใช้</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             @csrf
                             @foreach ($users as $user)
                             @if ($user->isAdmin())
-                            <tr class="text-center">
-                                <td>{{$user->name}}</td>
-                            </tr>
                             @elseif (!$user->isAdmin())
                             <tr class="text-center">
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
                             </tr>
                             @endif
                             @endforeach
